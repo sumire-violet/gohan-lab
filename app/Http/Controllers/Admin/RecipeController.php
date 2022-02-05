@@ -13,7 +13,7 @@ class RecipeController extends Controller
         return view('admin.recipe.create');
     }
 
-    public function create()
+    public function create(Request $request)
     {
         return redirect('admin/recipe/create');
     }
