@@ -13,7 +13,16 @@ class FavoriteRecipes extends Migration
      */
     public function up()
     {
-        //
+        // {
+         Schema::create('favorite_recipes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recipe_id');
+          //以下、recipesテーブルのidと連携
+            $table->foreign('recipe_id')
+                  ->references('id')
+                  ->on('recipes')
+                  ->onDelete('cascade');    
+        });
     }
 
     /**
@@ -24,5 +33,6 @@ class FavoriteRecipes extends Migration
     public function down()
     {
         //
+         Schema::dropIfExists('favorite_recipes');
     }
 }

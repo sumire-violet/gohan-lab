@@ -14,6 +14,21 @@ class RecipeTags extends Migration
     public function up()
     {
         //
+        Schema::create('recipe_tags', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recipe_id');
+            $table->unsignedBigInteger('tag_id');
+            //以下、recipesテーブルのidと連携
+            $table->foreign('recipe_id') 
+                  ->references('id')
+                  ->on('recipes')
+                  ->onDelete('cascade');
+            //以下、tagsテーブルのidと連携
+            $table->foreign('tag_id')
+                  ->references('id')
+                  ->on('tags')
+                  ->onDelete('cascade');
+            });
     }
 
     /**

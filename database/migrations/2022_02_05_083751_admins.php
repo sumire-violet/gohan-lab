@@ -14,6 +14,11 @@ class Admins extends Migration
     public function up()
     {
         //
+        Schema::create('admins', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->string('e-mail');
+            $table->string('password');
+        });   
     }
 
     /**
@@ -24,5 +29,6 @@ class Admins extends Migration
     public function down()
     {
         //
+         Schema::dropIfExists('admins');
     }
 }

@@ -14,15 +14,22 @@ class RecipeContents extends Migration
     public function up()
     {
         //
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+         Schema::create('recipe_contents', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recipe_id');
+            $table->text('step');
+            $table->integer('sort');
+            //以下、recipesテーブルのidと連携
+            $table->foreign('recipe_id') 
+                  ->references('id')
+                  ->on('recipes')
+                  ->onDelete('cascade');
+            });
+        }
+        /**/
     public function down()
     {
         //
+         Schema::dropIfExists('recipe_contents');
     }
 }

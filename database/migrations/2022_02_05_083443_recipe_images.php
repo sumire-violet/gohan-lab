@@ -14,6 +14,17 @@ class RecipeImages extends Migration
     public function up()
     {
         //
+         Schema::create('recipe_images', function (Blueprint $table){
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recipe_id');
+            $table->string('image_path')->nullable();
+            $table->integer('sort');
+            //以下、recipesテーブルのIDと連携
+            $table->foreign('recipe_id') 
+                  ->references('id')
+                  ->on('recipes')
+                  ->onDelete('cascade');
+        });
     }
 
     /**
@@ -24,5 +35,6 @@ class RecipeImages extends Migration
     public function down()
     {
         //
+         Schema::dropIfExists('recipe_images');
     }
 }

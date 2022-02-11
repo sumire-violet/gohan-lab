@@ -14,6 +14,13 @@ class Blogs extends Migration
     public function up()
     {
         //
+         Schema::create('blogs', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title');
+            $table->text('text');
+            $table->string('image_path')->nullable(); 
+            $table->timestamps();
+        });   
     }
 
     /**
@@ -24,5 +31,6 @@ class Blogs extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('blogs');
     }
 }

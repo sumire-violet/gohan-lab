@@ -13,20 +13,20 @@ class Recipes extends Migration
      */
     public function up()
     {
-        Schema::create('recipe', function (Blueprint $recipe) {
-            $table->bigIncrements('recipe_id');
-            $table->string('recipe_name'); 
-            $table->string('category_id');  
-            $table->string('cooking_time');
-            $table->string('supplement');
-            $table->string('yield_serving');
+        Schema::create('recipes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('category_id'); 
+            $table->string('name'); 
+            $table->integer('cooking_time');
+            $table->text('note');
+            $table->integer('number_of_serving');
             $table->string('image_path')->nullable(); 
             $table->timestamps();
-            //以下、category_mastersテーブルのcategory_idと連携
+            //以下、categoriesテーブルのidと連携
             $table->foreign('category_id') 
-                  ->references('id')　　
-                  ->on('recipes')
-                  ->onDelete('cascade');                                                              
+                  ->references('id')
+                  ->on('categories')
+                  ->onDelete('cascade');                                                       
         });
     }
 
@@ -38,5 +38,6 @@ class Recipes extends Migration
     public function down()
     {
         //
+         Schema::dropIfExists('recipes');
     }
 }

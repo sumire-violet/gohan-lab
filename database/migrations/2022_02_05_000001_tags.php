@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TagMasters extends Migration
+class Tags extends Migration
 {
     /**
      * Run the migrations.
@@ -14,6 +14,10 @@ class TagMasters extends Migration
     public function up()
     {
         //
+        Schema::create('tags', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name'); 
+            });
     }
 
     /**
@@ -24,5 +28,6 @@ class TagMasters extends Migration
     public function down()
     {
         //
+         Schema::dropIfExists('tags');
     }
 }

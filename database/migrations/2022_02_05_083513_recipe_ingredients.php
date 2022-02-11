@@ -14,15 +14,17 @@ class RecipeIngredients extends Migration
     public function up()
     {
         //
+        Schema::create('recipe_ingredients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('recipe_id');
+            $table->string('ingredient');
+            $table->string('quantity');
+        });   
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    /**/
     public function down()
     {
         //
+         Schema::dropIfExists('recipe_ingredients');
     }
 }
