@@ -40,3 +40,7 @@
         </div>
     </div>
 @endsection
+
+@section('css')
+    <link href="{{ secure_asset('css/blog.css') }}" rel="stylesheet">
+@endsection
