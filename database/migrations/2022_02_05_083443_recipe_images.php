@@ -17,7 +17,7 @@ class RecipeImages extends Migration
          Schema::create('recipe_images', function (Blueprint $table){
             $table->bigIncrements('id');
             $table->unsignedBigInteger('recipe_id');
-            $table->string('image_path')->nullable();
+            $table->string('image_path');
             $table->integer('sort');
             //以下、recipesテーブルのIDと連携
             $table->foreign('recipe_id') 

@@ -11,5 +11,7 @@ class RecipeImage extends Model
 
     public static $rules = array(
         'recipe_id' => 'required',
+        'image_path' => 'required',
+        'sort' => 'required'
          );
 }
